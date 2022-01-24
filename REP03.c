@@ -17,13 +17,17 @@ void main(){
     int a, b, j = 0;
     stack *s = init();
     
-    printf("逆ポーランド式を入力：");
+    printf("Ｃ言語実習２ REP03 E20C4033 ラーション・ステファン\n");
+    printf("Infixを入力（例：「(1-(2+3))」）：");
     fgets(c, STACK_MAX, stdin);
     c[strcspn(c, "\n")] = 0;
+    
+    //debug
+    //strcpy(c, "(1-(2+3))");
 
-    printf("infix: %s\n", c);
+    printf("Infix: %s\n", c);
     convert(c);
-    printf("postfix: %s\n", c);
+    printf("Postfix(逆ポーランド記法): %s\n", c);
 
     while(c[j] != '\0') {
         switch (c[j]){

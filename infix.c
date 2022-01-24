@@ -10,8 +10,13 @@
 #include "stack.h"
 #include "infix.h"
 
-//     (1-(2+3))
-//     (a+(b*c)/(d-e))
+/*
+ * Function:  convert 
+ * --------------------
+ *   InfixからPostfixに変更
+ *
+ *   char *i: infix記法
+ */
 void convert(char *i){
 
     int j = 0;
@@ -35,7 +40,6 @@ void convert(char *i){
                 }
                 break;
             default:
-                
                 push(postfix, i[j]);
                 break;
         }

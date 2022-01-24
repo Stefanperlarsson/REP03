@@ -9,17 +9,16 @@
 
 #include <stdlib.h>
 
-#define STACK_MAX 128
+#define STACK_MAX 128 //stackのサイズ
 
 struct stack{
-	char data[STACK_MAX];
-	int p;
+	char data[STACK_MAX]; //stackのデータ
+	int p; //stackの位置
 };
 typedef struct stack stack;
 
-stack *init();
-void push(stack *, char); //comment
-char pop(stack *); //comment
-void reverse(stack *, char *r); //comment
+stack *init(); //stack作成
+void push(stack *, char); //stackに追加
+char pop(stack *); //stackから読み取る
 
 #endif
