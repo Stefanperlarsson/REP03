@@ -6,24 +6,29 @@
 
 #include "stack.h"
 
-char stack[STACK_MAX];
-int c = -1;
+static int stack[STACK_MAX];
+static int i = 0;
 
 /*
  * Function:  push 
  * --------------------
- *   stackにcharを追加
+ *   stackにintを追加
  */
-void push(char c){
-    stack[c++] = c;
+void push(int c){
+    stack[i] = c;
+    i++;
 }
 /*
  * Function:  pop 
  * --------------------
- *   積み重なった一番上のcharと取る
+ *   積み重なった一番上のintと取る
  *
- *   returns: 一番上のchar
+ *   returns: 一番上のint
  */
-char pop(){ //TODO: maybe make easier
-    return c == -1 ? -1 : stack[c--];
+int pop(){ //TODO: maybe make better
+    if(i == 0)
+        return 0;
+    
+    i--;
+    return stack[i];
 }

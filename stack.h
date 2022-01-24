@@ -9,7 +9,7 @@
 
 #define STACK_MAX 128
 
-void push(char); //comment
-char pop(); //comment
+void push(int); //comment
+int pop(); //comment
 
 #endif

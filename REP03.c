@@ -17,6 +17,7 @@ void main(){
 
     char expression[STACK_MAX];
     char *e = expression;
+    int a, b = 0;
 
     printf("逆ポーランド式を入力：");
     scanf("%s", e);
@@ -24,17 +25,23 @@ void main(){
     while(*e != '\0') {
         switch (*e){
             case PLUS:
-
-                break;
             case MINUS:
-
-                break;
             case MULTIPLICATION:
-
-                break;
+                a = pop(), b = pop();
+                if(*e == PLUS) {
+                    printf("%d+%d\n", b, a);
+                    push(b + a);
+                } else if(*e == MINUS) {
+                    printf("%d-%d\n", b, a);
+                    push(b - a);
+                } else if(*e == MULTIPLICATION) {
+                    printf("%d*%d\n", b, a);
+                    push(b * a);
+                }
+            break;
         default:
             if (isdigit(*e) != 0) {
-                //push to stack etc
+                push((int) *e - '0');
             } else {
                 fprintf(stderr, "エラー\n");
                 return ;
@@ -43,4 +50,6 @@ void main(){
         }
         e++;
     }
+
+    printf("答え:%d\n", pop());
 }
