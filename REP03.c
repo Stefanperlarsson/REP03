@@ -8,10 +8,7 @@
 #include <ctype.h>
 
 #include "stack.h"
-
-#define PLUS '+'
-#define MINUS '-'
-#define MULTIPLICATION '*'
+#include "infix.h"
 
 void main(){
 
@@ -22,6 +19,11 @@ void main(){
     printf("逆ポーランド式を入力：");
     scanf("%s", e);
 
+    convert(e);
+
+    return;
+
+    /*
     while(*e != '\0') {
         switch (*e){
             case PLUS:
@@ -52,4 +54,5 @@ void main(){
     }
 
     printf("答え:%d\n", pop());
+    */
 }

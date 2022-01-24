@@ -6,29 +6,37 @@
 
 #include "stack.h"
 
-static int stack[STACK_MAX];
-static int i = 0;
+//debug
+#include <stdio.h>
+////////
+
+stack *init(){
+    stack *s = (stack *) malloc(1 * sizeof(stack));
+    s->p = 0;
+
+    return s;
+}
 
 /*
  * Function:  push 
  * --------------------
- *   stackにintを追加
+ *   stackにcharを追加
  */
-void push(int c){
-    stack[i] = c;
-    i++;
+void push(stack *s, char c){
+    s->data[s->p] = c;
+    s->p++;
 }
 /*
  * Function:  pop 
  * --------------------
- *   積み重なった一番上のintと取る
+ *   積み重なった一番上のcharと取る
  *
- *   returns: 一番上のint
+ *   returns: 一番上のchar
  */
-int pop(){ //TODO: maybe make better
-    if(i == 0)
-        return 0;
+char pop(stack *s){ //TODO: maybe make better
+    if(s->p == 0)
+        return '\0';
     
-    i--;
-    return stack[i];
+    s->p--;
+    return s->data[s->p];
 }

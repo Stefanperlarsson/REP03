@@ -7,9 +7,19 @@
 #ifndef STACK_H_INCLUDED
 #define STACK_H_INCLUDED
 
+#include <stdlib.h>
+
 #define STACK_MAX 128
 
-void push(int); //comment
-int pop(); //comment
+struct stack{
+	char data[STACK_MAX];
+	int p;
+};
+typedef struct stack stack;
+
+stack *init();
+void push(stack *, char); //comment
+char pop(stack *); //comment
+void reverse(stack *, char *r); //comment
 
 #endif
