@@ -5,26 +5,27 @@
 */
 
 #include <stdio.h>
+#include <string.h>
 
 #include "stack.h"
 #include "infix.h"
-
 
 //     (1-(2+3))
 //     (a+(b*c)/(d-e))
 void convert(char *i){
 
+    int j = 0;
     char c;
     stack *postfix = init();
     stack *operators = init();
     
-    while(*i != '\0') {
-        switch(*i) {
+    while(i[j] != '\0') {
+        switch(i[j]) {
             case PLUS:
             case MINUS:
             case MULTIPLICATION:
             case PARANTHESIS_OPEN:
-                push(operators, *i);
+                push(operators, i[j]);
                 break;
             case PARANTHESIS_CLOSE:
                 c = pop(operators);
@@ -34,19 +35,20 @@ void convert(char *i){
                 }
                 break;
             default:
-                push(postfix, *i);
+                
+                push(postfix, i[j]);
                 break;
         }
-        i++;
+        j++;
     }
 
-    char r[postfix->p];
-    r[postfix->p] = '\0';
-    for(int j = postfix->p - 1; j != -1; j--) {
-        r[j] = pop(postfix);
-    }
-    printf("%s\n", r);
-    
+    i[postfix->p] = '\0';
+    c = pop(postfix);
+    while(c != '\0'){
+        i[postfix->p] = c;
+        c = pop(postfix);
+    }        
+
     free(operators);
     free(postfix);
 }

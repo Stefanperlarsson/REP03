@@ -6,53 +6,54 @@
 
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
 
 #include "stack.h"
 #include "infix.h"
 
 void main(){
 
-    char expression[STACK_MAX];
-    char *e = expression;
-    int a, b = 0;
-
+    char c[STACK_MAX];
+    int a, b, j = 0;
+    stack *s = init();
+    
     printf("逆ポーランド式を入力：");
-    scanf("%s", e);
+    fgets(c, STACK_MAX, stdin);
+    c[strcspn(c, "\n")] = 0;
 
-    convert(e);
+    printf("infix: %s\n", c);
+    convert(c);
+    printf("postfix: %s\n", c);
 
-    return;
-
-    /*
-    while(*e != '\0') {
-        switch (*e){
+    while(c[j] != '\0') {
+        switch (c[j]){
             case PLUS:
             case MINUS:
             case MULTIPLICATION:
-                a = pop(), b = pop();
-                if(*e == PLUS) {
+                a = pop(s), b = pop(s);
+                if(c[j] == PLUS) {
                     printf("%d+%d\n", b, a);
-                    push(b + a);
-                } else if(*e == MINUS) {
+                    push(s, b + a);
+                } else if(c[j] == MINUS) {
                     printf("%d-%d\n", b, a);
-                    push(b - a);
-                } else if(*e == MULTIPLICATION) {
+                    push(s, b - a);
+                } else if(c[j] == MULTIPLICATION) {
                     printf("%d*%d\n", b, a);
-                    push(b * a);
+                    push(s, b * a);
                 }
             break;
         default:
-            if (isdigit(*e) != 0) {
-                push((int) *e - '0');
+            if (isdigit(c[j]) != 0) {
+                push(s, (int) c[j] - '0');
             } else {
                 fprintf(stderr, "エラー\n");
                 return ;
             }
             break;
         }
-        e++;
+        j++;
     }
+    printf("答え:%d\n", pop(s));
 
-    printf("答え:%d\n", pop());
-    */
+    free(s);
 }
