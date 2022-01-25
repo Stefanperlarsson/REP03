@@ -31,11 +31,11 @@ C言語でプログラミングしたInfix計算式を採算できるソフト�
 <a name="design"></a>
 
 ### 流れ <a name="flowchart"></a>
-<img src="REP01.png" width="720">
+<img src="REP03.png" width="720">
 
 ### 特徴 <a name="notes"></a> - 必修なところ以外では、自分で頑張ってテップアップしました。
 * InfixからPostfix変更できる
-* 自分のstackコード（struct使用）
+* 自分のstackコード（struct使用、複数stack可能）
 
 ### 関数の説明 <a name="functions"></a>
 
