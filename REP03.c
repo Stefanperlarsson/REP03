@@ -21,9 +21,6 @@ void main(){
     printf("Infixを入力（例：「(1-(2+3))」）：");
     fgets(c, STACK_MAX, stdin);
     c[strcspn(c, "\n")] = 0;
-    
-    //debug
-    //strcpy(c, "(1-(2+3))");
 
     printf("Infix: %s\n", c);
     convert(c);
@@ -36,13 +33,10 @@ void main(){
             case MULTIPLICATION:
                 a = pop(s), b = pop(s);
                 if(c[j] == PLUS) {
-                    printf("%d+%d\n", b, a);
                     push(s, b + a);
                 } else if(c[j] == MINUS) {
-                    printf("%d-%d\n", b, a);
                     push(s, b - a);
                 } else if(c[j] == MULTIPLICATION) {
-                    printf("%d*%d\n", b, a);
                     push(s, b * a);
                 }
             break;
